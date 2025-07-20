@@ -46,14 +46,12 @@ npx prisma generate
 npm run start:dev
 ```
 O backend estará rodando em:
-http://localhost:3001/api
-http://localhost:3001/api/membros
-http://localhost:3001/api/posts
+- http://localhost:3001/api
+- http://localhost:3001/api/membros
+- http://localhost:3001/api/posts
 
 #### ➡️ Frontend
-Abra outro terminal:
-entre na pasta frontend
-digite os seguintes comandos:
+Abra outro terminal, entre na pasta frontend e digite os seguintes comandos:
 ```
 cd frontend
 npm install
@@ -61,24 +59,24 @@ npm run dev
 ```
 
 O frontend estará rodando em:
-http://localhost:3000
-http://localhost:3000/membros
-http://localhost:3000/posts
+- http://localhost:3000
+- http://localhost:3000/membros
+- http://localhost:3000/posts
 
 
 #### 🌐 Endpoints:
 
 Membros
-GET /api/membros - Lista todos os membros
-POST /api/membros - Cria novo membro
-PATCH /api/membros/:id - Atualiza membro
-DELETE /api/membros/:id - Remove membro
+- GET /api/membros - Lista todos os membros
+- POST /api/membros - Cria novo membro
+- PATCH /api/membros/:id - Atualiza membro
+- DELETE /api/membros/:id - Remove membro
 
 Posts
-GET /api/posts - Lista todos os posts
-POST /api/posts - Cria novo post
-PATCH /api/posts/:id - Atualiza post
-DELETE /api/posts/:id - Remove post
+- GET /api/posts - Lista todos os posts
+- POST /api/posts - Cria novo post
+- PATCH /api/posts/:id - Atualiza post
+- DELETE /api/posts/:id - Remove post
 
 ## 👤 Autor:
 - Israel Honório de Castro
