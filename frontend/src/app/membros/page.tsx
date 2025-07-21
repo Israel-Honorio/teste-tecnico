@@ -4,13 +4,16 @@ import React, { useEffect, useState } from "react";
 import api from "@/lib/axios";
 
 function Membros() {
+  // Estado para armazenar a lista de membros, a página atual e o total de páginas
   const [membros, setMembros] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
+  // Efeito para buscar os membros quando a página é alterada
   useEffect(() => {
     const fetchMembros = async () => {
       try {
+        // Faz uma requisição GET para a API para buscar os membros com paginação
         const response = await api.get(`/membros?page=${page}&limit=5`); // altere o limit conforme desejado
         setMembros(response.data.data);
         setTotalPages(response.data.meta.totalPages);
@@ -20,7 +23,7 @@ function Membros() {
     };
 
     fetchMembros();
-  }, [page]);
+  }, [page]); // Dependência para atualizar a lista de membros quando a página mudar
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">

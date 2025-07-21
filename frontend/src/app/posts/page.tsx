@@ -4,14 +4,17 @@ import React, { useEffect, useState } from "react";
 import api from "@/lib/axios";
 
 function Posts() {
+  // Estado para armazenar a lista de posts, o ID do post aberto, a página atual e o total de páginas
   const [posts, setPosts] = useState([]);
   const [openPostId, setOpenPostId] = useState<number | null>(null);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
+  // Efeito para buscar os posts quando a página é alterada
   useEffect(() => {
     const fetchPosts = async () => {
       try {
+        // Faz uma requisição GET para a API para buscar os posts com paginação
         const response = await api.get(`/posts?page=${page}&limit=5`); // altere o limit conforme desejado
         setPosts(response.data.data);
         setTotalPages(response.data.meta.totalPages);
@@ -21,8 +24,10 @@ function Posts() {
     };
 
     fetchPosts();
-  }, [page]);
+  }, [page]); // Dependência para atualizar a lista de posts quando a página mudar
 
+  // Função para alternar a exibição do conteúdo de um post
+  // Se o post já estiver aberto, fecha-o; caso contrário, abre o post com
   const togglePost = (id: number) => {
     setOpenPostId(openPostId === id ? null : id);
   };
@@ -48,7 +53,9 @@ function Posts() {
                   {new Date(post.created_at).toLocaleDateString()}
                 </p>
               </div>
-              <span className="text-xl">{openPostId === post.id ? "−" : "+"}</span>
+              <span className="text-xl">
+                {openPostId === post.id ? "−" : "+"}
+              </span>
             </button>
 
             {openPostId === post.id && (

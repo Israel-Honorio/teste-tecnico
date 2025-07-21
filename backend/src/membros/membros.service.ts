@@ -10,8 +10,14 @@ import { PaginationDto } from '../common/dto/pagination.dto';
 
 @Injectable()
 export class MembrosService {
+  // Injeta o serviço Prisma para interagir com o banco de dados
+  // @param prisma - Instância do PrismaService para acesso ao banco de dados
   constructor(private prisma: PrismaService) {}
 
+  // Cria um novo membro
+  // @param createMembroDto - Dados do membro a ser criado
+  // @returns O membro criado
+  // @throws ConflictException se o email já estiver em uso
   async create(createMembroDto: CreateMembroDto) {
     try {
       return await this.prisma.membros.create({
@@ -25,6 +31,9 @@ export class MembrosService {
     }
   }
 
+  // Busca todos os membros com paginação
+  // @param paginationDto - Parâmetros de paginação (página, limite)
+  // @returns Lista de membros paginada com metadados
   async findAll(paginationDto: PaginationDto) {
     const { page = 1, limit = 10 } = paginationDto;
     const skip = (page - 1) * limit;
@@ -33,7 +42,7 @@ export class MembrosService {
       this.prisma.membros.findMany({
         skip,
         take: limit,
-        orderBy: { created_at: 'desc' },
+        orderBy: { created_at: 'desc' }, // Ordena por data de criação decrescente
         include: {
           Posts: {
             select: {
@@ -57,6 +66,10 @@ export class MembrosService {
     };
   }
 
+  // Busca um membro específico pelo ID
+  // @param id - ID do membro a ser buscado
+  // @returns O membro encontrado
+  // @throws NotFoundException se o membro não for encontrado
   async findOne(id: number) {
     const membro = await this.prisma.membros.findUnique({
       where: { id },
@@ -72,6 +85,12 @@ export class MembrosService {
     return membro;
   }
 
+  // Atualiza as informações de um membro
+  // @param id - ID do membro a ser atualizado
+  // @param updateMembroDto - Dados a serem atualizados do membro
+  // @returns O membro atualizado
+  // @throws NotFoundException se o membro não for encontrado
+  // @throws ConflictException se o email já estiver em uso
   async update(id: number, updateMembroDto: UpdateMembroDto) {
     await this.findOne(id);
 
@@ -88,6 +107,10 @@ export class MembrosService {
     }
   }
 
+  // Remove um membro pelo ID
+  // @param id - ID do membro a ser removido
+  // @returns o membro removido
+  // @throws NotFoundException se o membro não for encontrado
   async remove(id: number) {
     await this.findOne(id);
 

@@ -26,11 +26,38 @@ CREATE DATABASE stefanini_db;
 ```
 Ou crie através do pgadmin4 um banco de dados chamado stefanini_db;
 
-Configure a conexão no arquivo .env do backend:
+Configure a conexão no arquivo .env do backend (crie um arquivo .env):
 ```
 DATABASE_URL="postgresql://postgres:sua_senha@localhost:5432/stefanini_db?schema=public"
                         // aqui é necessário colocar a senha do seu pgadmin
 PORT=3001
+
+coloque esse código sql na query tools do banco de dados no pgadmin4:
+
+INSERT INTO membros (id, nome, email, profissao, created_at, updated_at)
+VALUES
+  (1, 'João Silva', 'joao.silva@example.com', 'Engenheiro de Software', now(), now()),
+  (2, 'Maria Souza', 'maria.souza@example.com', 'Desenvolvedora Fullstack', now(), now()),
+  (3, 'Carlos Lima', 'carlos.lima@example.com', 'Analista de Dados', now(), now()),
+  (4, 'Ana Costa', 'ana.costa@example.com', 'Product Owner', now(), now()),
+  (5, 'Bruno Rocha', 'bruno.rocha@example.com', 'UX Designer', now(), now()),
+  (6, 'neymar', 'neymar@gmail.com', 'Jogador', now(), now());
+
+INSERT INTO posts (titulo, texto, "autorId")
+VALUES
+  ('Introdução ao NestJS', 'Conteúdo sobre introdução ao NestJS', 2),
+  ('Criando APIs com Prisma', 'Exemplo prático de Prisma ORM', 5),
+  ('Análise de dados com SQL', 'SQL avançado para Data Science', 4),
+  ('Gerenciamento de Produto', 'Boas práticas para Product Owners', 2),
+  ('Design de interfaces intuitivas', 'Principais heurísticas de UX', 1),
+  ('Avançando no TypeScript', 'Generics, Utility Types e beyond', 3),
+  ('Deploy de aplicações Node.js', 'Como realizar deploy na AWS', 5),
+  ('Testes automatizados com Jest', 'Cobertura e mocks avançados', 1),
+  ('Visualizações com PowerBI', 'Criando dashboards eficientes', 3),
+  ('Agilidade em projetos', 'Scrum, Kanban e além', 4);
+  ('Meus Títulos', 'Tenho uma champions league e uma copa Libertadores', 6)
+
+
 ```
 
 

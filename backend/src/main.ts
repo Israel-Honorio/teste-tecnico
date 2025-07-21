@@ -24,6 +24,7 @@ async function bootstrap() {
   // Prefixo global para todas as rotas
   app.setGlobalPrefix('api');
 
+  // Configurar porta do servidor
   const port = process.env.PORT || 3001;
   await app.listen(port);
   

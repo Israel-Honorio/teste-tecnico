@@ -21,6 +21,8 @@ model Membros {
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt @default(now())
 
+  // Relacionamento com posts
+  // Um membro pode ter vários posts
   @@map("membros")
   Posts Posts[]
 }
@@ -33,7 +35,10 @@ model Posts{
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt @default(now())
 
+  // Relacionamento com membros
+  // Um post pertence a um membro (autor)
   autor       Membros  @relation(fields: [autorId], references: [id])
 
+  // Mapeamento para a tabela "posts" no banco de dados
   @@map("posts")
 }

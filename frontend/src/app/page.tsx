@@ -7,6 +7,7 @@ function HomePage() {
   const fullText = "Meu Projeto Full-Stack Stefanini";
   const typingSpeed = 100; // ms por letra
 
+  // Efeito para simular o efeito de digitação
   useEffect(() => {
     let index = 0;
     const interval = setInterval(() => {
@@ -15,7 +16,7 @@ function HomePage() {
       if (index === fullText.length) {
         clearInterval(interval);
       }
-    }, typingSpeed);
+    }, typingSpeed); 
 
     return () => clearInterval(interval);
   }, []);
